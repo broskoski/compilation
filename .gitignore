@@ -1,0 +1,30 @@
+# Numerous always-ignore extensions
+*.diff
+*.err
+*.orig
+*.log
+*.rej
+*.swo
+*.swp
+*.vi
+*~
+*.sass-cache
+
+# OS or Editor folders
+.DS_Store
+.cache
+.project
+.settings
+.tmproj
+nbproject
+Thumbs.db
+.rvmrc
+
+# Brunch folder for temporary files.
+tmp/
+public
+
+
+# Sublime text files
+*.sublime-project
+*.sublime-workspace
