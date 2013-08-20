@@ -1,9 +1,9 @@
 <ul class="list-group songs">
   <li class="list-group-item clearfix" ng-show="song.title" ng-class="{active: currentSong == song}" ng-repeat="song in songs" ng-click="playSong(song)">
     <h6 class="pull-left"><a>{{song.title}}</a></h6>
-    <h6 class="pull-right">Added by {{song.user.username}}</h6>
+    <h6 class="pull-right light">Added by {{song.user.username}}</h6>
   </li>
 </ul>
 
-<div id="hidden-player" class="hide" ng-if="currentSong">
+<div id="hidden-player" class="hide">
 </div>

@@ -16,7 +16,7 @@
 <body ng-app="compilationApp">
   <div id="wrap">
     <div class="container">
-      <div class="page-header" ng-controller="Main">
+      <div class="page-header" ng-controller="Main" data-spy="affix" data-offset-top="200">
         <h1>
           <a href="/">mac.are.na</a> <span ng-show="currentPlaylist.title()"> / {{currentPlaylist.title()}}</span>
         </h1>
@@ -37,7 +37,7 @@
           </div>
         </div>
       </div>
-      <div class="ng-view">
+      <div class="ng-view main">
 
       </div>
     </div>

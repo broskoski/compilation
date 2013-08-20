@@ -32,7 +32,6 @@ body {
 .container .credit {
   margin: 20px 0;
 }
-
 a{
   color:#000;
 }
@@ -43,4 +42,12 @@ a:hover{
 
 .songs li{
   cursor: pointer;
+}
+li:hover{
+  background:#BFFAF8;
+}
+
+.light {
+  color: #aaa;
+  font-weight: normal;
 }
