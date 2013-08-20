@@ -22,7 +22,7 @@
         </h1>
         
         <div ng-show="currentPlaylist.title()" class="controls clearfix">
-          <h4>by {{currentPlaylist.username()}}</h4>
+          <h4 ng-if="currentPlaylist.title()">by {{currentPlaylist.username()}}</h4>
           <div id="toolbar" class="btn-toolbar hide">
             <div class="btn-group pull-right">
               <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-step-backward"></span></button>

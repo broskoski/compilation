@@ -43,6 +43,8 @@ app.controller('PlaylistViewer', function($scope, $resource, $routeParams, curre
     currentSong.set(song);
     $scope.currentSong = song;
 
+    $scope.$apply()
+
     console.log('song id', $scope.getYoutubeId(song));
 
     if($scope.player && $scope.player.id){
@@ -64,6 +66,18 @@ app.controller('PlaylistViewer', function($scope, $resource, $routeParams, curre
   $scope.onPlayerReady = function(event){
     console.log('onPlayerReady', event);
     event.target.playVideo();
+  }
+
+  $scope.onPlayerStateChange = function(event){
+    console.log('state change')
+    if(event.data == YT.PlayerState.ENDED){
+      console.log('trying to play next vid');
+      cur = $scope.songs.indexOf($scope.currentSong) + 1;
+      if(cur == $scope.songs.length){
+        cur = 0;
+      }
+      $scope.playSong($scope.songs[cur]);
+    }
   }
 
   $scope.getYoutubeId = function(song){
@@ -101,6 +115,7 @@ angular.module('compilationServices', [])
           return currentSong.title;
       },
       set: function(newSong){
+        console.log('set song', newSong);
         currentSong = newSong;
       }
     }
