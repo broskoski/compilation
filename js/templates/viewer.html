@@ -1,9 +1,13 @@
 <ul class="list-group songs">
   <li class="list-group-item clearfix" ng-show="song.title" ng-class="{active: currentSong == song}" ng-repeat="song in songs" ng-click="playSong(song)">
-    <h6 class="pull-left"><a>{{song.title}}</a></h6>
-    <h6 class="pull-right light">Added by {{song.user.username}}</h6>
+    <h5 class="pull-left"><a>{{song.title}}</a></h5>
+    <h6 class="pull-right light hide">Added by {{song.user.username}}</h6>
   </li>
 </ul>
 
 <div id="hidden-player" class="hide">
+</div>
+<div class="hide">
+	<iframe id="sc-widget" width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F1848538&show_artwork=true"></iframe>
+
 </div>

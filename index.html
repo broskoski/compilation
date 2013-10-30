@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Compilations</title>
+  <title>mac.are.na</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css/bootstrap.min.css" rel="stylesheet">
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css/bootstrap-glyphicons.css" rel="stylesheet">
@@ -11,6 +11,9 @@
   <script src="https://www.youtube.com/iframe_api"></script>
   <script src="http://code.angularjs.org/1.1.5/angular.min.js"></script>
   <script src="http://code.angularjs.org/1.1.5/angular-resource.min.js"></script>
+  <script src="//connect.soundcloud.com/sdk.js"></script>
+  <script src="https://w.soundcloud.com/player/api.js"></script>
+  <script src="js/soundmanager2-jsmin.js"></script>
   <script src="js/compilation.js"></script>
 </head>
 <body ng-app="compilationApp">
@@ -23,7 +26,7 @@
         
         <div ng-show="currentPlaylist.title()" class="controls clearfix">
           <h4 ng-if="currentPlaylist.title()">by {{currentPlaylist.username()}}</h4>
-          <div id="toolbar" class="btn-toolbar hide">
+          <div id="toolbar" class="btn-toolbar  hide">
             <div class="btn-group pull-right">
               <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-step-backward"></span></button>
               <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-play"></span></button>

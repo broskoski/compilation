@@ -1,5 +1,5 @@
 <ul class="list-group">
-  <li class="list-group-item" ng-repeat="list in lists">
+  <li class="list-group-item" ng-repeat="list in lists" ng-show="list.class == 'Channel'">
     <h3><a href="#{{list.slug}}">{{list.title}}</a></h3>
     <h6>by {{list.user.username}}</h6>
   </li>
