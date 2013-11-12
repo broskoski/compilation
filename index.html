@@ -6,7 +6,7 @@
   <title>mac.are.na</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css/bootstrap.min.css" rel="stylesheet">
-  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css/bootstrap-glyphicons.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
   <script src="https://www.youtube.com/iframe_api"></script>
   <script src="http://code.angularjs.org/1.1.5/angular.min.js"></script>
@@ -20,9 +20,12 @@
   <div id="wrap">
     <div class="container">
       <div class="page-header" ng-controller="Main" data-spy="affix" data-offset-top="200">
-        <h1>
-          <a href="/">mac.are.na</a> <span ng-show="currentPlaylist.title()"> / {{currentPlaylist.title()}}</span>
-        </h1>
+        <div >
+          <h1 class="has-spinner {{loading.get()}}">
+            <a href="/">mac.are.na</a> <span ng-show="currentPlaylist.title()"> / {{currentPlaylist.title()}}</span>
+            <span class="spinner"><i class="glyphicon glyphicon-refresh icon-spin"></i></span>
+          </h1>
+        </div>
         
         <div ng-show="currentPlaylist.title()" class="controls clearfix">
           <h4 ng-if="currentPlaylist.title()">by {{currentPlaylist.username()}}</h4>

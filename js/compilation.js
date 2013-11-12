@@ -20,29 +20,34 @@ app.config(function($routeProvider, $locationProvider) {
   }
 );
 
-app.controller('Main', function($scope, currentPlaylist, currentSong){
+app.controller('Main', function($scope, currentPlaylist, currentSong, isLoading){
   $scope.currentPlaylist = currentPlaylist;
   $scope.currentSong = currentSong;
+  $scope.loading = isLoading;
 })
 
-app.controller('PlaylistLister', function($scope, $resource, currentPlaylist) { 
+app.controller('PlaylistLister', function($scope, $resource, currentPlaylist, isLoading) { 
   var Channel = $resource('http://api.are.na/v2/channels/:slug?s=' + new Date().getTime());
+  isLoading.set('active');
 
   var playlists = Channel.get({slug: 'compilation'}, function(){
     $scope.lists = playlists.contents;
+    isLoading.set('');
     currentPlaylist.set(false);
     currentSong.set(false);
   });
-
 })
 
-app.controller('PlaylistViewer', function($scope, $resource, $routeParams, currentPlaylist, currentSong, mediaClassifier) {
+app.controller('PlaylistViewer', function($scope, $resource, $routeParams, currentPlaylist, currentSong, mediaClassifier, isLoading) {
 
   $scope.player = null;
+
+  isLoading.set('active');
 
   var Channel = $resource('http://api.are.na/v2/channels/:slug?s=' + new Date().getTime());
   var songs = Channel.get({slug: $routeParams.slug}, function(){
     $scope.songs = songs.contents;
+    isLoading.set('');
     currentPlaylist.set(songs);
     currentSong.set(false);
   });
@@ -145,6 +150,10 @@ app.controller('PlaylistViewer', function($scope, $resource, $routeParams, curre
     return reg.exec(song.embed.html)[1];
   }
 
+  $scope.showSong = function(song){
+     return song.title && (song.class == 'Media' || song.class == 'Attachment');
+  }
+
   $scope.currentSong = null;
 
 })
@@ -172,6 +181,17 @@ angular.module('compilationServices', [])
       },
       set: function(newSong){
         currentSong = newSong;
+      }
+    }
+  })
+  .factory('isLoading', function($rootScope){
+    var cssClass = '';
+    return {
+      set: function(newClass){
+        cssClass = newClass;
+      },
+      get: function(){
+        return cssClass;
       }
     }
   })
