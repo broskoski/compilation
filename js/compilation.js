@@ -27,10 +27,10 @@ app.controller('Main', function($scope, currentPlaylist, currentSong, isLoading)
 })
 
 app.controller('PlaylistLister', function($scope, $resource, currentPlaylist, isLoading) { 
-  var Channel = $resource('http://api.are.na/v2/channels/:slug?s=' + new Date().getTime());
+  var Channel = $resource('http://api.are.na/v2/channels/:slug?sort=created_at&direction=desc&s=' + new Date().getTime());
   isLoading.set('active');
 
-  var playlists = Channel.get({slug: 'compilation'}, function(){
+  var playlists = Channel.get({slug: 'mac-are-na'}, function(){
     $scope.lists = playlists.contents;
     isLoading.set('');
     currentPlaylist.set(false);
