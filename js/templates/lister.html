@@ -2,7 +2,7 @@
   <li class="list-group-item" ng-repeat="list in lists" ng-show="list.class == 'Channel'">
     <h3>
     	<a href="#{{list.slug}}">{{list.title}}</a>
-    	<span class="label label-warning" ng-show="$first">new</span>
+    	<span class="label label-warning" ng-show="isRecent(list)">new</span>
     </h3>
     <h6>by {{list.user.username}}</h6>
   </li>

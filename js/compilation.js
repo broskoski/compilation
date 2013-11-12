@@ -36,6 +36,12 @@ app.controller('PlaylistLister', function($scope, $resource, currentPlaylist, is
     currentPlaylist.set(false);
     currentSong.set(false);
   });
+
+  $scope.isRecent = function(list){
+    var ONE_WEEK = 1000 * 60 * 60 * 24 * 7;
+    myDate = Date.parse(list.connected_at);
+    return ((new Date) - myDate) < ONE_WEEK;
+  }
 })
 
 app.controller('PlaylistViewer', function($scope, $resource, $routeParams, currentPlaylist, currentSong, mediaClassifier, isLoading) {
