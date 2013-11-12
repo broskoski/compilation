@@ -67,6 +67,10 @@ app.controller('PlaylistViewer', function($scope, $resource, $routeParams, curre
       $scope.player.destroy();
     }
 
+    if($scope.mp3){
+      $scope.mp3.destruct();
+    }
+
 
 
     switch(type){
@@ -106,13 +110,15 @@ app.controller('PlaylistViewer', function($scope, $resource, $routeParams, curre
       case "mp3":
         console.log('this is the song', song);
 
-        var mySound = sm.createSound({
+        $scope.mp3 = sm.createSound({
           id: 'aSound',
           url: song.attachment.url
         });
 
-        mySound.play({
+        $scope.mp3.play({
           onfinish: function() {
+            $scope.mp3.destruct();
+            $scope.mp3 = null;
             $scope.nextSong();
           }
         });
