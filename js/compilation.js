@@ -24,9 +24,9 @@ app.controller('Main', function($scope, currentPlaylist, currentSong, isLoading)
   $scope.currentPlaylist = currentPlaylist;
   $scope.currentSong = currentSong;
   $scope.loading = isLoading;
-})
+});
 
-app.controller('PlaylistLister', function($scope, $resource, currentPlaylist, isLoading) { 
+app.controller('PlaylistLister', function($scope, $resource, currentPlaylist, isLoading) {
   var Channel = $resource('http://api.are.na/v2/channels/:slug?sort=created_at&direction=desc&s=' + new Date().getTime());
   isLoading.set('active');
 
@@ -40,9 +40,10 @@ app.controller('PlaylistLister', function($scope, $resource, currentPlaylist, is
   $scope.isRecent = function(list){
     var ONE_WEEK = 1000 * 60 * 60 * 24 * 7;
     myDate = Date.parse(list.connected_at);
-    return ((new Date) - myDate) < ONE_WEEK;
-  }
-})
+    right_now = new Date();
+    return ((right_now - myDate) < ONE_WEEK);
+  };
+});
 
 app.controller('PlaylistViewer', function($scope, $resource, $routeParams, currentPlaylist, currentSong, mediaClassifier, isLoading) {
 
@@ -68,7 +69,7 @@ app.controller('PlaylistViewer', function($scope, $resource, $routeParams, curre
 
     $scope.$apply();
 
-    if($scope.player && $scope.player.id){
+    if($scope.player){
       console.log('Player', $scope.player);
       $scope.player.destroy();
     }
@@ -131,7 +132,7 @@ app.controller('PlaylistViewer', function($scope, $resource, $routeParams, curre
 
         break;
 
-      default: 
+      default:
 
         console.log('not supported');
         break;
@@ -141,13 +142,13 @@ app.controller('PlaylistViewer', function($scope, $resource, $routeParams, curre
 
   $scope.onYTPlayerReady = function(event){
     event.target.playVideo();
-  }
+  };
 
   $scope.onYTPlayerStateChange = function(event){
     if(event.data == YT.PlayerState.ENDED){
       $scope.nextSong();
     }
-  }
+  };
 
   $scope.nextSong = function(){
     cur = $scope.songs.indexOf($scope.currentSong) + 1;
@@ -155,20 +156,20 @@ app.controller('PlaylistViewer', function($scope, $resource, $routeParams, curre
       cur = 0;
     }
     $scope.playSong($scope.songs[cur]);
-  }
+  };
 
   $scope.getYoutubeId = function(song){
     reg = new RegExp('(?:https?://)?(?:www\\.)?(?:youtu\\.be/|youtube\\.com(?:/embed/|/v/|/watch\\?v=))([\\w-]{10,12})', 'g');
     return reg.exec(song.embed.html)[1];
-  }
+  };
 
   $scope.showSong = function(song){
      return song.title && (song.class == 'Media' || song.class == 'Attachment');
-  }
+  };
 
   $scope.currentSong = null;
 
-})
+});
 
 angular.module('compilationServices', [])
   .factory('currentPlaylist', function($rootScope){
@@ -183,7 +184,7 @@ angular.module('compilationServices', [])
       set: function(newPlaylist){
         currentPlaylist = newPlaylist;
       }
-    }
+    };
   })
   .factory('currentSong', function($rootScope){
     var currentSong = false;
@@ -194,7 +195,7 @@ angular.module('compilationServices', [])
       set: function(newSong){
         currentSong = newSong;
       }
-    }
+    };
   })
   .factory('isLoading', function($rootScope){
     var cssClass = '';
@@ -205,7 +206,7 @@ angular.module('compilationServices', [])
       get: function(){
         return cssClass;
       }
-    }
+    };
   })
   .factory('mediaClassifier', function($rootScope){
     return {
@@ -222,8 +223,8 @@ angular.module('compilationServices', [])
           return "not supported";
         }
       }
-    }
-  })
+    };
+  });
 
 var players = {
   mp3:{
@@ -241,4 +242,4 @@ var players = {
 
     }
   }
-}
+};
