@@ -159,7 +159,8 @@ app.controller('PlaylistViewer', function($scope, $resource, $routeParams, curre
 
   $scope.getYoutubeId = function(song){
     reg = new RegExp('(?:https?://)?(?:www\\.)?(?:youtu\\.be/|youtube\\.com(?:/embed/|/v/|/watch\\?v=))([\\w-]{10,12})', 'g');
-    return reg.exec(song.embed.html)[1];
+    html = decodeURIComponent(song.embed.html);
+    return reg.exec(html)[1];
   }
 
   $scope.showSong = function(song){
