@@ -1,9 +1,5 @@
 var app = angular.module('compilationApp', ['ngResource', 'compilationServices']);
 
-var sc = SC.initialize({
-  client_id: "52827056452bfe16056d4fa66a137529"
-});
-
 var sm = soundManager.setup({
   url: '/js/swf/'
 });
